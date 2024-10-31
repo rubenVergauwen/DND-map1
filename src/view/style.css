@@ -1,0 +1,178 @@
+/* Basic reset for margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #333; /* Dark grey background */
+    color: #f4f4f4; /* Light text color */
+}
+
+/* Fullscreen map container */
+.zoomist-container {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    position: relative; /* For positioning child elements */
+    overflow: hidden; /* Hide overflow */
+}
+
+/* Zoomist image */
+.zoomist-image {
+    display: flex;
+    justify-content: center; /* Center the image */
+    align-items: center; /* Center the image */
+    height: 100%; /* Full height of the container */
+    background-color: #333;
+}
+
+.zoomist-image img {
+    max-width: 100%; /* Ensure the image scales down */
+    max-height: 100%; /* Ensure the image fits within the height */
+    object-fit: contain; /* Maintain aspect ratio and fit within the frame */
+    margin: auto; /* Center the image with whitespace if needed */
+}
+
+/* Header styling */
+h1, h2 {
+    color: #f4f4f4; /* Light text color for headers */
+    margin: 20px;
+    text-align: center; /* Center headers */
+}
+
+/* Form styling */
+form {
+    background: #444; /* Dark background for the form */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 20px auto; /* Center form */
+    width: 100%;
+    max-width: 400px; /* Limit width for the form */
+}
+
+/* Input and button styling */
+input[type="text"],
+input[type="number"],
+input[type="url"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #666; /* Darker border for inputs */
+    border-radius: 5px;
+    background-color: #555; /* Dark background for inputs */
+    color: #f4f4f4; /* Light text color for inputs */
+}
+
+/* Button styling */
+button {
+    background-color: #28a745; /* Green background for buttons */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Table styling */
+.table-container {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center the table */
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    max-width: 800px; /* Max width for the table */
+    border-collapse: collapse;
+    background-color: #444; /* Dark background for the table */
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #666; /* Darker border */
+    color: #f4f4f4; /* Light text color */
+}
+
+th {
+    background-color: #555; /* Slightly lighter for header */
+}
+
+/* Button styling for delete button */
+td button {
+    background-color: #dc3545; /* Danger color */
+}
+
+td button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    td button {
+        width: 100%; /* Full width on small screens */
+        margin-top: 10px; /* Space above button */
+    }
+}
+
+/* Gradient card styling */
+.gradient-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+/* Additional styles for text and background */
+.gradient-card__text {
+    font-size: 12vw;
+    font-weight: 700;
+    opacity: 0.1;
+    color: #000; /* You may want to change this if it's not visible */
+    mix-blend-mode: overlay;
+}
+
+.zoomist-image {
+    position: relative; /* Ensure positioning context for absolute elements */
+}
+
+.zoomist-image img {
+    display: block; /* Remove any space below the image */
+    max-width: 100%; /* Ensure the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#coordinates {
+    position: fixed;
+    float: right;
+    z-index: 100;
+    color: #333; /* Light text color for coordinates */
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    color: rgb(12, 11, 11);
+    padding: 8px 12px;
+    border-radius: 5px;
+    pointer-events: none; /* Prevent mouse events on the tooltip */
+    z-index: 1000; /* Ensure it appears above other elements */
+    transition: opacity 0.2s ease;
+    opacity: 0; /* Initially hidden */
+}
+
+.tooltip.show {
+    opacity: 1; /* Show the tooltip */
+}

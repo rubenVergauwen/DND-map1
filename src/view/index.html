@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Icon</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Zoomist-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css"
+    />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css"
+/>
+</head>
+<body>
+    <div id="coordinates" style="text-align: center; margin-top: 20px;">
+        X: <span id="coordX">0</span>, Y: <span id="coordY">0</span>
+    </div>
+    <div id="zoomist" class="zoomist-container">
+        <div class="zoomist-wrapper">
+          <div class="zoomist-image">
+            <img src="map.png" />
+            <div id="iconOverlays"></div> <!-- Container for icons -->
+          </div>
+        </div>
+      </div>
+  
+      <script src="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.umd.js"></script>
+      <script>
+        const zoomist = new Zoomist("#zoomist", {
+          slider: true,
+          zoomer: true,
+        });
+      </script>
+    
+    
+      <br></br>
+    <br></br>
+    <hr></hr>
+    <h1>Add Icon</h1>
+    <form id="iconForm">
+        <label for="locationName">Location Name:</label>
+        <input type="text" id="locationName" required><br>
+
+        <label for="locX">X Coordinate:</label>
+        <input type="number" id="locX" required><br>
+
+        <label for="locY">Y Coordinate:</label>
+        <input type="number" id="locY" required><br>
+
+        <label for="pageURL">Page URL:</label>
+        <input type="url" id="pageURL" required><br>
+
+        <button type="submit">Add Icon</button>
+    </form>
+
+    <h2>Existing Icons</h2>
+    <div class="table-container">
+    <table id="iconTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="iconList">
+            <!-- Rows will be populated here -->
+        </tbody>
+    </table>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
