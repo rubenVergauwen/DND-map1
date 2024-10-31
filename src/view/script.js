@@ -16,16 +16,7 @@ document.getElementById('iconForm').addEventListener('submit', function(event) {
 
     
 
-// Load icons and other functionality
-window.onload = function() {
-    loadIcons(); // Load icons initially
 
-    // Add a click event to the whole document
-    document.addEventListener("click", () => {
-        document.getElementById('locX').value = 50; // Set locX to 50
-        document.getElementById('locY').value = 80; // Set locY to 80
-    });
-};
 
 
 
@@ -183,3 +174,14 @@ function deleteIcon(id) {
 
 // Load icons on page load
 window.onload = loadIcons;
+
+// Load icons and other functionality
+window.onload = function() {
+    loadIcons(); // Load icons initially
+
+    // Add a click event to the whole document
+    document.addEventListener("click", () => {
+        document.getElementById('locX').value = 50; // Set locX to 50
+        document.getElementById('locY').value = 80; // Set locY to 80
+    });
+};
