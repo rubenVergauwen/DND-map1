@@ -1,3 +1,37 @@
+// Declare global variables for coordinates
+let globalX = 0;
+let globalY = 0;
+
+// Mouseover event for image coordinates
+document.addEventListener("DOMContentLoaded", () => {
+    const img = document.querySelector(".zoomist-image img");
+    const coordX = document.getElementById("coordX");
+    const coordY = document.getElementById("coordY");
+
+    img.addEventListener("mousemove", (event) => {
+        const rect = img.getBoundingClientRect();
+        globalX = Math.round(event.clientX - rect.left); // Save X coordinate to global variable
+        globalY = Math.round(event.clientY - rect.top); // Save Y coordinate to global variable
+        coordX.textContent = globalX; // Update displayed X coordinate
+        coordY.textContent = globalY; // Update displayed Y coordinate
+    });
+
+    img.addEventListener("mouseleave", () => {
+        globalX = 0; // Reset global X coordinate
+        globalY = 0; // Reset global Y coordinate
+        coordX.textContent = 0;
+        coordY.textContent = 0;
+    });
+
+    // Add a click event to the image only
+    img.addEventListener("click", () => {
+        // Set the locX and locY input fields with the values from global variables
+        document.getElementById('locX').value = globalX; // Set locX to the global X coordinate
+        document.getElementById('locY').value = globalY; // Set locY to the global Y coordinate
+    });
+});
+
+// Form submission event
 document.getElementById('iconForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting the default way
 
@@ -12,15 +46,6 @@ document.getElementById('iconForm').addEventListener('submit', function(event) {
         loc_y: locY,
         page_url: pageURL
     };
-
-
-    
-
-
-
-
-
-
 
     // Send the data to the PHP script
     fetch('add_icon.php', {
@@ -65,8 +90,6 @@ function loadIcons() {
             const iconList = document.getElementById('iconList');
             iconList.innerHTML = ''; // Clear the table body
             const image = document.querySelector(".zoomist-image img"); // Get the image element
-
-            // Get the bounding rectangle of the image
             const imageRect = image.getBoundingClientRect();
 
             icons.forEach(icon => {
@@ -95,9 +118,11 @@ function loadIcons() {
                 iconElement.target = "_blank"; // Open in a new tab
                 iconElement.style.position = 'absolute';
                 
-                // Correct the offset based on imageRect
-                iconElement.style.left = `${icon.loc_x - (-imageRect.left)}px`; // Add the image left offset
-                iconElement.style.top = `${icon.loc_y - (-imageRect.top)}px`; // Add the image top offset
+                // Position the icon based on its coordinates
+                iconElement.style.left = `${icon.loc_x  - (-imageRect.left)}px`; 
+                iconElement.style.top = `${icon.loc_y - (-imageRect.top)}px`; 
+
+ 
 
                 iconElement.innerHTML = '<img src="icon2.png" alt="Icon" style="width: 20px; height: 20px;" />'; // Replace with your icon image
 
@@ -105,7 +130,7 @@ function loadIcons() {
                 iconElement.addEventListener('mouseenter', () => {
                     tooltip.textContent = icon.location_name; // Set tooltip text
                     tooltip.style.display = 'block'; // Show the tooltip
-                    tooltip.style.zIndex = '500'
+                    tooltip.style.zIndex = '500';
                 });
 
                 iconElement.addEventListener('mousemove', (event) => {
@@ -126,27 +151,8 @@ function loadIcons() {
         });
 }
 
+// Load icons on page load
 window.onload = loadIcons;
-
-// Mouseover event for image coordinates
-document.addEventListener("DOMContentLoaded", () => {
-    const img = document.querySelector(".zoomist-image img");
-    const coordX = document.getElementById("coordX");
-    const coordY = document.getElementById("coordY");
-
-    img.addEventListener("mousemove", (event) => {
-        const rect = img.getBoundingClientRect();
-        const x = Math.round(event.clientX - rect.left);
-        const y = Math.round(event.clientY - rect.top);
-        coordX.textContent = x;
-        coordY.textContent = y;
-    });
-
-    img.addEventListener("mouseleave", () => {
-        coordX.textContent = 0;
-        coordY.textContent = 0;
-    });
-});
 
 // Function to delete an icon
 function deleteIcon(id) {
@@ -171,17 +177,3 @@ function deleteIcon(id) {
         alert('Error deleting icon: ' + error.message);
     });
 }
-
-// Load icons on page load
-window.onload = loadIcons;
-
-// Load icons and other functionality
-window.onload = function() {
-    loadIcons(); // Load icons initially
-
-    // Add a click event to the whole document
-    document.addEventListener("click", () => {
-        document.getElementById('locX').value = 50; // Set locX to 50
-        document.getElementById('locY').value = 80; // Set locY to 80
-    });
-};
