@@ -112,6 +112,8 @@ function loadIcons() {
                 row.appendChild(actionsCell);
                 iconList.appendChild(row);
 
+                
+                
                 // Create an overlay for each icon
                 const iconElement = document.createElement('a');
                 iconElement.href = icon.page_url; // Use the URL from the database
@@ -124,7 +126,7 @@ function loadIcons() {
 
  
 
-                iconElement.innerHTML = '<img src="icon2.png" alt="Icon" style="width: 20px; height: 20px;" />'; // Replace with your icon image
+                iconElement.innerHTML = '<img src="icon3.png" alt="Icon" style="width: 20px; height: 20px;" />'; // Replace with your icon image
 
                 // Add mouseover and mouseout events to the iconElement
                 iconElement.addEventListener('mouseenter', () => {
